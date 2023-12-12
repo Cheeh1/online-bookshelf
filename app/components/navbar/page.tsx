@@ -5,17 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import SignUp from "../sign-up/page";
 import Menu from "../menu/page";
-
-// interface Links {
-//   path: string;
-//   name: string;
-// }
+import Button from "../button/page";
 
 const links = [
   { path: "/", name: "Home" },
   { path: "/explore", name: "Explore" },
   { path: "/library", name: "Library" },
-  { path: "/genres", name: "Genres" },
+  { path: "/favorite", name: "Favorite" },
 ];
 
 const Navbar: FC = () => {
@@ -64,12 +60,9 @@ const Navbar: FC = () => {
                 alt="search"
               />
             </div>
-            <button
-              onClick={handleModal}
-              className="bg-secondary font-semibold rounded-3xl px-6 py-1 text-sm text-white"
-            >
-              Sign up
-            </button>
+            <div onClick={handleModal}>
+              <Button text="Sign up" />
+            </div>
           </div>
           <div onClick={handleMenu} className="block md:hidden xl:hidden">
             <Image height={20} width={20} src="/images/menu.svg" alt="menu" />

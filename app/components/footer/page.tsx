@@ -7,7 +7,7 @@ const links = [
   { path: "/", name: "Home" },
   { path: "/explore", name: "Explore" },
   { path: "/library", name: "Library" },
-  { path: "/genres", name: "Genres" },
+  { path: "/favorite", name: "Favorite" },
 ];
 
 const Footer: FC = () => {
@@ -16,7 +16,7 @@ const Footer: FC = () => {
   return (
     <>
       <footer className="flex flex-col gap-16 bg-white pt-10">
-        <div className="flex flex-col xl:flex-row md:flex-row pl-10 md:pl-0  xl:pl-0 justify-evenly">
+        <div className="flex flex-col xl:flex-row md:flex-row pl-10 md:pl-0 gap-10  xl:pl-0 justify-evenly">
           <div className="flex flex-col gap-5">
             <h1 className="text-secondary font-semibold text-lg">BookMark</h1>
             <p className="text-sm text-black w-64">
@@ -45,7 +45,7 @@ const Footer: FC = () => {
             <h1 className="text-secondary font-semibold text-lg">Help</h1>
             <ul className="flex flex-col gap-2 text-black text-sm">
               <li className="">About</li>
-              <li className="">How To USe</li>
+              <li className="">How To Use</li>
               <li className="">FAQs</li>
               <li className="">FAQs</li>
             </ul>

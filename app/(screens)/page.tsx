@@ -1,7 +1,20 @@
 import Image from "next/image";
 import { Open_Sans } from "next/font/google";
+import Button from "../components/button/page";
+import Link from "next/link";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
+
+const genres = [
+  "Fiction",
+  "Non-Fiction",
+  "Horror",
+  "Historical Romance",
+  "Self-Help",
+  "Romance",
+  "Young Adult",
+  "Fantasy",
+];
 
 export default function Home() {
   return (
@@ -16,9 +29,9 @@ export default function Home() {
             velit senectus in nunc ut dictum aliquam id platea. In eget amet,
             imperdiet tellus. Sit sit orci in eu. Quis pellentesque.
           </p>
-          <button className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 xl:text-sm w-48">
-            Start Organizing
-          </button>
+          <Link href="/explore" className="w-48">
+            <Button text="Start Organizing" />
+          </Link>
         </div>
 
         <Image
@@ -37,7 +50,7 @@ export default function Home() {
         />
       </section>
 
-      <section className="flex xl:flex-row md:flex-row flex-col gap-10 md:gap-0 xl:gap-0 justify-evenly items-center py-20">
+      <section className="flex xl:flex-row md:flex-row flex-col gap-10 md:gap-0 xl:gap-0 justify-evenly items-center py-24">
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-5">
             <h1 className="text-3xl text-primary font-extrabold tracking-wider w-80">
@@ -49,25 +62,15 @@ export default function Home() {
               eleifend cras praesent purus nec, quis aliquet.
             </p>
           </div>
-          <div className="flex justify-start flex-wrap gap-5 w-80">
-            <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center px-2">
-              Fiction
-            </p>
-            <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center px-2">
-              Non-Fiction
-            </p>
-            <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center px-2">
-              Horror
-            </p>
-            <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center px-2">
-              Young Adult
-            </p>
-            <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center px-2">
-              Romance
-            </p>
-            <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center px-2">
-              Historical Romance
-            </p>
+          <div className="flex justify-start flex-wrap gap-x-3 gap-y-3 w-80">
+            {genres.map((genre, index) => (
+              <p
+                key={index}
+                className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center px-2"
+              >
+                {genre}
+              </p>
+            ))}
           </div>
         </div>
         <Image
@@ -75,7 +78,7 @@ export default function Home() {
           width={500}
           src="/images/reading-illustration.svg"
           alt="illustration"
-          className="md:w-80"
+          className="md:w-80 xl:w-96"
         />
       </section>
 
@@ -96,9 +99,10 @@ export default function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus
             velit senectus in nunc ut dictum aliquam id platea.
           </p>
-          <button className="bg-secondary rounded-3xl text-white font-bold py-2 w-28 text-sm">
-            Explore
-          </button>
+
+          <Link href="/explore" className="w-28">
+            <Button text="Explore" />
+          </Link>
         </div>
       </section>
 
@@ -183,9 +187,9 @@ export default function Home() {
             <p className="text-sm text-center text-black w-56">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
             </p>
-            <button className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm">
-              Start Organizing
-            </button>
+            <Link href="/explore">
+              <Button text="Start Organizing" />
+            </Link>
           </div>
           <div className="flex flex-col md:flex-row xl:flex-row gap-10 md:gap-0 xl:gap-0 justify-evenly">
             <div className="flex flex-col items-center gap-2">

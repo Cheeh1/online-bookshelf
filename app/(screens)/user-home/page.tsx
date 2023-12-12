@@ -1,5 +1,19 @@
 import { FC } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import Button from "@/app/components/button/page";
+
+const genres = [
+  "Fiction",
+  "Non-Fiction",
+  "Crime Fiction",
+  "Horror",
+  "Historical Romance",
+  "Self-Help",
+  "Romance",
+  "Young Adult",
+  "Fantasy",
+];
 
 const Home: FC = () => {
   return (
@@ -15,9 +29,10 @@ const Home: FC = () => {
               velit senectus in nunc ut dictum aliquam id platea. In eget amet,
               imperdiet tellus. Sit sit orci in eu. Quis pellentesque.
             </p>
-            <button className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm w-28 tracking-widest">
-              Get into it
-            </button>
+
+            <Link href="/explore" className="w-28">
+              <Button text="Get into it" />
+            </Link>
           </div>
 
           <Image
@@ -53,9 +68,9 @@ const Home: FC = () => {
               imperdiet tellus. Sit sit orci in eu. Quis pellentesque.
             </p>
             <div className="flex justify-center">
-              <button className="bg-secondary rounded-3xl text-white font-bold py-2 w-28 text-sm tracking-widest">
-                Get Started
-              </button>
+              <Link href="/explore" className="w-36">
+                <Button text="Get Started" />
+              </Link>
             </div>
           </div>
         </section>
@@ -132,40 +147,21 @@ const Home: FC = () => {
         </section>
         <section className="border-t flex xl:flex-row md:flex-row flex-col gap-10 md:gap-0 xl:gap-0 justify-evenly items-center py-20">
           <div className="flex flex-col gap-10">
-            <div className="flex flex-col gap-5 items-center">
+            <div className="flex flex-col gap-5 xl:items-start items-center">
               <h1 className="text-3xl text-center md:text-left xl:text-left text-primary font-extrabold tracking-wider w-80">
                 Search from your{" "}
                 <span className="text-secondary">favourite</span> categories
               </h1>
             </div>
             <div className="flex justify-center md:justify-start xl:justify-start flex-wrap md:w-80 xl:w-96 gap-x-5 gap-y-5">
-              <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center w-20">
-                Fiction
-              </p>
-              <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center w-28">
-                Non-Fiction
-              </p>
-              <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center w-28">
-                Crime Fiction
-              </p>
-              <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center w-20">
-                Horror
-              </p>
-              <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center w-40">
-                Historical Romance
-              </p>
-              <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center w-20">
-                Slef-Help
-              </p>
-              <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center w-20">
-                Romance
-              </p>
-              <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center w-28">
-                Young Adult
-              </p>
-              <p className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center w-20">
-                Fantasy
-              </p>
+              {genres.map((genre, index) => (
+                <p
+                  key={index}
+                  className="border-2 border-primary rounded-3xl py-1 text-sm font-semibold text-primary text-center px-2"
+                >
+                  {genre}
+                </p>
+              ))}
             </div>
           </div>
           <Image
@@ -173,7 +169,7 @@ const Home: FC = () => {
             width={500}
             src="/images/category.svg"
             alt="illustration"
-            className=" w-80 xl:w-full"
+            className=" w-80 xl:w-96"
           />
         </section>
       </main>
