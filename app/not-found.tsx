@@ -4,8 +4,8 @@ import Link from "next/link";
 const NotFound: FC = () => {
   return (
     <>
-      <div className="py-72">
-        <div className="text-center">
+      <div className="py-72 flex justify-center">
+        {/* <div className="text-center">
           <h1 className="text-9xl font-black text-gray-200">404</h1>
 
           <p className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -20,7 +20,13 @@ const NotFound: FC = () => {
           >
             Go Back Home
           </Link>
-        </div>
+        </div> */}
+        <h1 className="text-3xl text-extrabold text-gray-200">404</h1>
+        <p className="">Uh-oh</p>
+        <p className="">We can&apos;t find that page. </p>
+        <Link href="/">
+          Go Back Home
+        </Link>
       </div>
     </>
   );
