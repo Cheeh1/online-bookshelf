@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Open_Sans } from "next/font/google";
-import Button from "../components/button/page";
+import Button from "./components/button/page";
 import Link from "next/link";
 
 const openSans = Open_Sans({ subsets: ["latin"] });

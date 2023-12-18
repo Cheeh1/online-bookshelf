@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useState, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -13,6 +13,7 @@ import Button from "@/app/components/button/page";
 import { MdDeleteOutline } from "react-icons/md";
 import toast, { Toaster } from "react-hot-toast";
 import { BookItems } from "@/app/redux/librarySlice";
+import { AuthContext } from "@/app/context/authContext";
 
 const Library: FC = () => {
   const [activeTab, setActiveTab] = useState<
@@ -23,20 +24,22 @@ const Library: FC = () => {
     setActiveTab(tab);
   };
 
+  const { user } = useContext(AuthContext);
+
   const dispatch = useDispatch();
 
   const handleMoveToProgress = (item: BookItems) => {
     dispatch(moveToInProgress(item));
-    toast.success("Book now in progress, Keep it up", {
-      className: "text-sm",
+    toast.success("Book is now in progress, Keep it up", {
+      className: "text-sm font-semibold",
       duration: 2000,
     });
   };
 
   const handleMoveToCompleted = (item: BookItems) => {
     dispatch(moveToCompleted(item));
-    toast.success("Congratulations! You have completed the book", {
-      className: "text-sm",
+    toast.success("Congratulations! You have completed this book", {
+      className: "text-sm font-semibold",
       duration: 2000,
       position: "top-right",
     });
@@ -44,8 +47,8 @@ const Library: FC = () => {
 
   const handleRemoveBook = (item: BookItems) => {
     dispatch(removeFromLibrary(item));
-    toast.success("Oops! Book removed from library", {
-      className: "text-sm",
+    toast.success("Oops! Book removed from the library", {
+      className: "text-sm font-semibold",
       duration: 2000,
       position: "top-right",
     });
@@ -61,41 +64,71 @@ const Library: FC = () => {
     <>
       <Toaster />
       <main className="relative flex flex-col gap-20 py-20">
-        <section className="z-10 flex flex-col gap-5">
+        <section className="z-10 flex flex-col gap-5 md:gap-2 xl:gap-2">
+          <div className="flex flex-col md:flex-row xl:flex-row justify-evenly items-center">
+            <p className="font-extrabold text-primary text-2xl">
+              Welcome,{" "}
+              <span className="text-secondary">
+                {user ? user.displayName : "Reader"}
+              </span>{" "}
+              👋
+            </p>
+            <p className="font-bold text-xl text-primary">
+              Email:{" "}
+              <span className="font-semibold text-lg text-secondary">
+                {user?.email}
+              </span>
+            </p>
+          </div>
           <div className="flex xl:px-40 justify-evenly md:justify-between md:px-20 xl:justify-between text-sm items-center">
-            <h1 className="font-extrabold xl:text-2xl text-primary">
+            <h1 className="font-extrabold xl:text-xl text-primary">
               Your Library
             </h1>
             <div className="flex gap-3">
               <p
                 onClick={() => handleTabClick("toRead")}
-                className={`cursor-pointer ${
+                className={`relative cursor-pointer ${
                   activeTab === "toRead"
                     ? "text-primary font-bold"
                     : "text-[#3F3D56A8] font-medium"
                 }`}
               >
-                To Be Read
+                To Be Read{" "}
+                {toRead.length > 0 && (
+                  <span className="absolute bg-[#c2a410a0] text-primary rounded-2xl right-0 -top-2 px-1.5 text-[10px]">
+                    {toRead.length}
+                  </span>
+                )}
               </p>
               <p
                 onClick={() => handleTabClick("inProgress")}
-                className={`cursor-pointer ${
+                className={`relative cursor-pointer ${
                   activeTab === "inProgress"
                     ? "text-primary font-bold"
                     : "text-[#3F3D56A8] font-medium"
                 }`}
               >
-                In Progress
+                In Progress{" "}
+                {inProgress.length > 0 && (
+                  <span className="absolute bg-[#c2a410a0] text-primary rounded-2xl right-0 -top-2 px-1.5 text-[10px]">
+                    {inProgress.length}
+                  </span>
+                )}
               </p>
               <p
                 onClick={() => handleTabClick("completed")}
-                className={`cursor-pointer ${
+                className={`relative cursor-pointer ${
                   activeTab === "completed"
                     ? "text-primary font-bold"
                     : "text-[#3F3D56A8] font-medium"
                 }`}
               >
-                Completed
+                Completed{" "}
+                {completed.length > 0 && (
+                  <span className="absolute bg-[#c2a410a0] text-primary rounded-2xl right-0 -top-2 px-1.5 text-[10px]">
+                    {completed.length}
+                  </span>
+                )}
               </p>
             </div>
           </div>
@@ -140,8 +173,8 @@ const Library: FC = () => {
                 <div className="flex justify-center">
                   <div className="flex flex-col gap-5 items-center">
                     <h1 className="text-primary font-extrabold text-xl md:text-2xl xl:text-2xl tracking-wider w-72 md:w-full xl:w-full">
-                      Add a <span className="text-secondary">Book</span>{" "}
-                      to the library
+                      Add a <span className="text-secondary">Book</span> to the
+                      library
                     </h1>
                     <Link href="/explore" className="w-40">
                       <Button text="Get Started" />
@@ -236,8 +269,20 @@ const Library: FC = () => {
         </section>
 
         <section className="">
-          <Image className="absolute top-28 right-0 w-32 xl:w-52" width={200} height={200} src="/images/explore-1.svg" alt="illustration" />
-          <Image className="absolute left-0 bottom-0 w-40 xl:w-60" width={250} height={250} src="/images/explore-2.svg" alt="illustration" />
+          <Image
+            className="absolute top-28 right-0 w-32 xl:w-52"
+            width={200}
+            height={200}
+            src="/images/explore-1.svg"
+            alt="illustration"
+          />
+          <Image
+            className="absolute left-0 bottom-0 w-40 xl:w-60"
+            width={250}
+            height={250}
+            src="/images/explore-2.svg"
+            alt="illustration"
+          />
         </section>
       </main>
     </>

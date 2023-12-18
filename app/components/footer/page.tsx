@@ -18,7 +18,7 @@ const Footer: FC = () => {
       <footer className="flex flex-col gap-16 bg-white pt-10">
         <div className="flex flex-col xl:flex-row md:flex-row pl-10 md:pl-0 gap-10  xl:pl-0 justify-evenly">
           <div className="flex flex-col gap-5">
-            <h1 className="text-secondary font-semibold text-lg">BookMark</h1>
+            <h1 className="text-secondary font-semibold text-xl">BookMark</h1>
             <p className="text-sm text-black w-64">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi,
               duis morbi ac enim, ut proin. Ut et dui mauris convallis odio sem
@@ -33,7 +33,7 @@ const Footer: FC = () => {
               {links.map((link, index) => (
                 <Link
                   key={index}
-                  className={pathname === link.path ? "text-secondary" : ""}
+                  className={pathname === link.path ? "text-secondary font-bold" : ""}
                   href={link.path}
                 >
                   {link.name}

@@ -1,7 +1,10 @@
 import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Open_Sans } from "next/font/google";
 import Button from "@/app/components/button/page";
+
+const openSans = Open_Sans({ subsets: ["latin"] });
 
 const genres = [
   "Fiction",
@@ -18,7 +21,7 @@ const genres = [
 const Home: FC = () => {
   return (
     <>
-      <main>
+      <main className={openSans.className}>
         <section className="user-home-bg flex flex-col md:flex-row xl:flex-row justify-evenly items-center xl:pt-5 md:pt-5 pt-36">
           <div className="flex flex-col gap-3">
             <h1 className="text-primary text-[35px] md:text-[50px] xl:text-[54px] w-64 xl:w-96 md:xl:96 font-semibold tracking-widest leading-tight">
@@ -30,7 +33,7 @@ const Home: FC = () => {
               imperdiet tellus. Sit sit orci in eu. Quis pellentesque.
             </p>
 
-            <Link href="/explore" className="w-28">
+            <Link href="/explore" className="w-32">
               <Button text="Get into it" />
             </Link>
           </div>
@@ -148,7 +151,7 @@ const Home: FC = () => {
         <section className="border-t flex xl:flex-row md:flex-row flex-col gap-10 md:gap-0 xl:gap-0 justify-evenly items-center py-20">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-5 xl:items-start items-center">
-              <h1 className="text-3xl text-center md:text-left xl:text-left text-primary font-extrabold tracking-wider w-80">
+              <h1 className="text-3xl text-center md:text-left xl:text-left text-primary font-extrabold tracking-wider w-80 xl:w-96">
                 Search from your{" "}
                 <span className="text-secondary">favourite</span> categories
               </h1>

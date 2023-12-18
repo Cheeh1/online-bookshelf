@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
 import { addToLibrary } from "@/app/redux/librarySlice";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface Params {
   params: {
@@ -21,10 +22,12 @@ const BookDetails: FC<Params> = ({ params }) => {
   const id = params.books_id;
   const parseId = id ? parseInt(id) : 1;
   const books = BooksData.find((book) => book.id === parseId);
-  
+
   const dispatch = useDispatch();
   const libraryState = useSelector((state: RootState) => state.library);
-  
+
+  const router = useRouter();
+
   // Handle case where books is undefined
   if (!books) {
     return (
@@ -33,13 +36,13 @@ const BookDetails: FC<Params> = ({ params }) => {
       </div>
     );
   }
-  
+
   const handleAddToLibrary = () => {
     const isBookInLibrary =
-    libraryState.toRead.find((book) => book.id === parseId) ||
-    libraryState.inProgress.find((book) => book.id === parseId) ||
-    libraryState.completed.find((book) => book.id === parseId);
-    
+      libraryState.toRead.find((book) => book.id === parseId) ||
+      libraryState.inProgress.find((book) => book.id === parseId) ||
+      libraryState.completed.find((book) => book.id === parseId);
+
     if (isBookInLibrary) {
       toast.error("Book already exists in the Library", {
         className: "text-sm",
@@ -55,14 +58,14 @@ const BookDetails: FC<Params> = ({ params }) => {
       });
     }
   };
-  
+
   return (
     <>
       <Toaster />
       <main className="relative flex flex-col md:flex-row xl:flex-row gap-10 xl:gap-20 pt-36 pb-20 items-center xl:px-40 xl:items-start">
-        <Link href="/explore">
-          <FaArrowLeft className="z-10 absolute top-28 text-3xl text-white left-10 xl:left-20 rounded-2xl bg-secondary p-1" />
-        </Link>
+        {/* <Link href="/explore"> */}
+          <FaArrowLeft onClick={() => router.back()} className="z-10 absolute top-28 text-3xl text-white left-10 xl:left-20 rounded-2xl bg-secondary p-1" />
+        {/* </Link> */}
         <Image
           className="absolute bottom-0 xl:top-10 left-0 w-36 xl:w-52"
           width={200}

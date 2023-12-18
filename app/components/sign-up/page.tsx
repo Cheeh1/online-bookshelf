@@ -1,8 +1,10 @@
+"use client";
 import { FC } from "react";
 import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { getAuth, signInWithRedirect, GoogleAuthProvider, UserCredential } from "firebase/auth";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter, usePathname } from "next/navigation";
+import "@/app/lib/firebase/firebase";
 
 interface Props {
   toggle: boolean;
@@ -10,8 +12,43 @@ interface Props {
 }
 
 const SignUp: FC<Props> = ({ toggle, action }) => {
+  const router = useRouter();
+  const auth = getAuth();
+
+  const pathname = usePathname();
+
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithRedirect(auth, provider)
+      .then((result) => {
+        // Provide a type for the 'result' object
+        const userCredential = result as UserCredential;
+        const user = userCredential.user;
+        console.log(user);
+        toast.success(`Welcome ${user.displayName}!`, {
+          className: "text-sm font-bold",
+          duration: 3000,
+        });
+
+        // if user login when the pathname is in home, it should navigate to the second home page and if user log in from other pages, it should refresh instead
+        {
+          pathname === "/"
+            ? setTimeout(() => {
+                router.push("/user-home");
+              }, 1000)
+            : setTimeout(() => {
+                router.refresh();
+              }, 3000);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
+      <Toaster />
       <div
         onClick={action}
         className={`${
@@ -21,9 +58,9 @@ const SignUp: FC<Props> = ({ toggle, action }) => {
         }`}
       >
         <div
-          className={`${inter.className} ${
+          className={`${
             toggle ? "transform translate-y-0" : "transform -translate-y-full"
-          } transition-all delay-100 duration-700 absolute top-10 right-[30rem]`}
+          } transition-all delay-100 duration-700 absolute top-40 right-8 xl:top-10 xl:right-[30rem]`}
         >
           <section className="flex flex-col py-10 px-5 rounded-xl gap-10 items-center border bg-[#ffffff]">
             <div className="fblock1">
@@ -41,7 +78,10 @@ const SignUp: FC<Props> = ({ toggle, action }) => {
               alt="illustration"
             />
 
-            <div className="flex gap-5 shadow-[#0000001a] shadow-md border-[#0000004d]  px-8 py-1.5 text-center border rounded-2xl">
+            <div
+              onClick={signInWithGoogle}
+              className="flex gap-5 shadow-[#0000001a] shadow-md border-[#0000004d]  px-8 py-1.5 text-center border rounded-2xl cursor-pointer"
+            >
               <Image
                 className=""
                 width={20}

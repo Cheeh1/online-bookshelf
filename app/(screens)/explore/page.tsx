@@ -1,4 +1,4 @@
-import { FC, Key } from "react";
+import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BooksData } from "../../data/books/page";
@@ -25,14 +25,14 @@ const Explore: FC = () => {
           <div className="z-10 grid grid-cols-3 gap-x-5 md:grid-cols-3 xl:grid-cols-5 xl:gap-x-5 gap-y-10">
             {BooksData.map((book) => (
               <Link key={book.id} href={`/explore/${book.id}`}>
-              <Image
-                className="rounded-lg hover:shadow-3xl hover:shadow-[#bdbdbd]"
-                key={book.id}
-                width={100}
-                height={100}
-                src={book.img}
-                alt={book.title}
-              />
+                <Image
+                  className="rounded-lg hover:shadow-3xl hover:shadow-[#bdbdbd]"
+                  key={book.id}
+                  width={100}
+                  height={100}
+                  src={book.img}
+                  alt={book.title}
+                />
               </Link>
             ))}
           </div>
@@ -40,7 +40,7 @@ const Explore: FC = () => {
 
         <section className="z-10 flex flex-col gap-3">
           <p className="text-primary font-bold text-2xl">Genres</p>
-          <div className="flex flex-wrap gap-x-3 gap-y-3 w-80 md:w-56 xl:w-56">
+          <div className="flex flex-wrap gap-x-3 gap-y-3 w-80 md:w-56 xl:w-60">
             {Genres.map((genre, index) => (
               <p
                 key={index}

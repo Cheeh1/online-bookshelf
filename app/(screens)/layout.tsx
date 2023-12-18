@@ -1,22 +1,26 @@
-import Navbar from "../components/navbar/page";
-import Footer from "../components/footer/page";
-import { Inter } from "next/font/google";
-import "../globals.css";
+"use client";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
 import { ReduxProvider } from "../redux/provider";
 
-const inter = Inter({ subsets: ["latin"] });
-
 const ScreenLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
+  const { user } = useContext(AuthContext);
+
+  if (!user) {
+    return (
+      <div className="py-16 mt-24 flex flex-col gap-1 justify-center items-center">
+        <p className="font-bold text-2xl">You can&apos;t <span className="text-secondary">access</span> this page.</p>
+        <p className="font-medium text-xl">Please <span className="text-secondary">login</span> to get access.</p>
+      </div>
+    );
+  } else {
+    return (
+      <>
         <main className="">
           <ReduxProvider>{children}</ReduxProvider>
         </main>
-        <Footer />
-      </body>
-    </html>
-  );
+      </>
+    );
+  }
 };
 export default ScreenLayout;
