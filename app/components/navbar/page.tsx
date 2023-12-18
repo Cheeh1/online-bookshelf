@@ -17,7 +17,6 @@ const Navbar: FC = () => {
     { path: user ? "/user-home" : "/", name: "Home" },
     { path: "/explore", name: "Explore" },
     { path: "/library", name: "Library" },
-    { path: "/favorite", name: "Favorite" },
   ];
 
   const pathname = usePathname();
