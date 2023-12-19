@@ -9,7 +9,6 @@ import {
 } from "@/app/redux/librarySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
-import Button from "@/app/components/button/page";
 import { MdDeleteOutline } from "react-icons/md";
 import toast, { Toaster } from "react-hot-toast";
 import { BookItems } from "@/app/redux/librarySlice";
@@ -176,8 +175,10 @@ const Library: FC = () => {
                       Add a <span className="text-secondary">Book</span> to the
                       library
                     </h1>
-                    <Link href="/explore" className="w-40">
-                      <Button text="Get Started" />
+                    <Link href="/explore">
+                      <button className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm w-40 tracking-widest">
+                       Get Started
+                      </button>
                     </Link>
                   </div>
                 </div>

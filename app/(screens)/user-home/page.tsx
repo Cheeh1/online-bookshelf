@@ -2,7 +2,6 @@ import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Open_Sans } from "next/font/google";
-import Button from "@/app/components/button/page";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
@@ -33,8 +32,10 @@ const Home: FC = () => {
               imperdiet tellus. Sit sit orci in eu. Quis pellentesque.
             </p>
 
-            <Link href="/explore" className="w-32">
-              <Button text="Get into it" />
+            <Link href="/explore">
+              <button className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm w-32 tracking-widest">
+                Get into it
+              </button>
             </Link>
           </div>
 
@@ -71,8 +72,10 @@ const Home: FC = () => {
               imperdiet tellus. Sit sit orci in eu. Quis pellentesque.
             </p>
             <div className="flex justify-center">
-              <Link href="/explore" className="w-36">
-                <Button text="Get Started" />
+              <Link href="/explore">
+                <button className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm w-36 tracking-widest">
+                  Get Started
+                </button>
               </Link>
             </div>
           </div>

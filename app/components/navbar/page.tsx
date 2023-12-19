@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import SignUp from "../sign-up/page";
 import Menu from "../menu/page";
-import Button from "../button/page";
 import { getAuth, signOut } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "@/app/context/authContext";
@@ -95,13 +94,19 @@ const Navbar: FC = () => {
               />
             </div>
             {user ? (
-              <div onClick={handleLogout}>
-                <Button text="Log Out" />
-              </div>
+              <button
+                onClick={handleLogout}
+                className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm tracking-widest"
+              >
+                Log out
+              </button>
             ) : (
-              <div onClick={handleModal}>
-                <Button text="Sign up" />
-              </div>
+              <button
+                onClick={handleModal}
+                className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm tracking-widest"
+              >
+                Sign up
+              </button>
             )}
           </div>
         </nav>

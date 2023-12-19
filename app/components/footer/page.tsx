@@ -7,7 +7,6 @@ const links = [
   { path: "/", name: "Home" },
   { path: "/explore", name: "Explore" },
   { path: "/library", name: "Library" },
-  { path: "/favorite", name: "Favorite" },
 ];
 
 const Footer: FC = () => {
@@ -33,7 +32,9 @@ const Footer: FC = () => {
               {links.map((link, index) => (
                 <Link
                   key={index}
-                  className={pathname === link.path ? "text-secondary font-bold" : ""}
+                  className={
+                    pathname === link.path ? "text-secondary font-bold" : ""
+                  }
                   href={link.path}
                 >
                   {link.name}

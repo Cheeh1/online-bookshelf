@@ -1,10 +1,8 @@
 "use client";
+import { FC } from "react";
 import { BooksData } from "@/app/data/books/page";
 import Image from "next/image";
-import Button from "@/app/components/button/page";
-import { FC } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
 import { addToLibrary } from "@/app/redux/librarySlice";
@@ -15,7 +13,6 @@ interface Params {
   params: {
     books_id: string;
   };
-  // text: string;
 }
 
 const BookDetails: FC<Params> = ({ params }) => {
@@ -63,9 +60,11 @@ const BookDetails: FC<Params> = ({ params }) => {
     <>
       <Toaster />
       <main className="relative flex flex-col md:flex-row xl:flex-row gap-10 xl:gap-20 pt-36 pb-20 items-center xl:px-40 xl:items-start">
-        {/* <Link href="/explore"> */}
-          <FaArrowLeft onClick={() => router.back()} className="z-10 absolute top-28 text-3xl text-white left-10 xl:left-20 rounded-2xl bg-secondary p-1" />
-        {/* </Link> */}
+        <FaArrowLeft
+          onClick={() => router.back()}
+          className="z-10 absolute top-28 text-3xl text-white left-10 xl:left-20 rounded-2xl bg-secondary p-1"
+        />
+
         <Image
           className="absolute bottom-0 xl:top-10 left-0 w-36 xl:w-52"
           width={200}
@@ -88,9 +87,13 @@ const BookDetails: FC<Params> = ({ params }) => {
             alt="book-1"
             className="rounded-lg"
           />
-          <div onClick={handleAddToLibrary} className="">
-            <Button text="Add to library" />
-          </div>
+
+          <button
+            onClick={handleAddToLibrary}
+            className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm w-48 tracking-widest"
+          >
+            Add to library
+          </button>
         </section>
 
         <section className="flex flex-col gap-5">

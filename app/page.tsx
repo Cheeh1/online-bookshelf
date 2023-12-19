@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Open_Sans } from "next/font/google";
-import Button from "./components/button/page";
 import Link from "next/link";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
@@ -29,8 +28,10 @@ export default function Home() {
             velit senectus in nunc ut dictum aliquam id platea. In eget amet,
             imperdiet tellus. Sit sit orci in eu. Quis pellentesque.
           </p>
-          <Link href="/explore" className="w-48">
-            <Button text="Start Organizing" />
+          <Link href="/explore">
+            <button className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm w-48 tracking-widest">
+              Start Organizing
+            </button>
           </Link>
         </div>
 
@@ -100,8 +101,10 @@ export default function Home() {
             velit senectus in nunc ut dictum aliquam id platea.
           </p>
 
-          <Link href="/explore" className="w-28">
-            <Button text="Explore" />
+          <Link href="/explore">
+            <button className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm w-28 tracking-widest">
+              Explore
+            </button>
           </Link>
         </div>
       </section>
@@ -188,7 +191,9 @@ export default function Home() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
             </p>
             <Link href="/explore">
-              <Button text="Start Organizing" />
+              <button className="bg-secondary rounded-3xl text-white font-bold py-2 px-4 text-sm w-48 tracking-widest">
+                Start Organizing
+              </button>
             </Link>
           </div>
           <div className="flex flex-col md:flex-row xl:flex-row gap-10 md:gap-0 xl:gap-0 justify-evenly">
