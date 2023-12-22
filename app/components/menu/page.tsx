@@ -1,5 +1,5 @@
 "use client";
-import { FC, useContext } from "react";
+import { FC } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaX } from "react-icons/fa6";
