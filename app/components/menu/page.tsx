@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { FaX } from "react-icons/fa6";
 import Image from "next/image";
 
-interface props {
+type props = {
   links: {
     path: string;
     name: string;
@@ -16,7 +16,7 @@ interface props {
   handleModal: () => void;
 }
 
-const Menu: FC<props> = ({ links, toggle, action }) => {
+const Menu = ({ links, toggle, action }: props) => {
   const pathname = usePathname();
 
   return (
