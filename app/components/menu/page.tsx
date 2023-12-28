@@ -1,22 +1,28 @@
 "use client";
-import { FC } from "react";
+import { FC, useContext } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaX } from "react-icons/fa6";
 import Image from "next/image";
+import { AuthContext } from "@/app/context/authContext";
 
-type props = {
-  links: {
-    path: string;
-    name: string;
-  }[];
+interface MenuProps {
+  // links: {
+  //   path: string;
+  //   name: string;
+  // }[];
   toggle: boolean;
   action: () => void;
-  handleLogout: () => void;
-  handleModal: () => void;
 }
 
-const Menu = ({ links, toggle, action }: props) => {
+const Menu: FC<MenuProps> = ({ toggle, action }) => {
+  const { user } = useContext(AuthContext);
+    const links = [
+      { path: user ? "/user-home" : "/", name: "Home" },
+      { path: "/explore", name: "Explore" },
+      { path: "/library", name: "Library" },
+    ];
+
   const pathname = usePathname();
 
   return (

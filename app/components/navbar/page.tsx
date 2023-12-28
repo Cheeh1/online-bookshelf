@@ -110,13 +110,7 @@ const Navbar: FC = () => {
             )}
           </div>
         </nav>
-        <Menu
-          toggle={menu}
-          action={handleMenu}
-          links={links}
-          handleLogout={handleLogout}
-          handleModal={handleModal}
-        />
+        <Menu toggle={menu} action={handleMenu} />
         <SignUp toggle={modal} action={handleModal} />
       </header>
     </>
