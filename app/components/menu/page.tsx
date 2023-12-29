@@ -7,21 +7,17 @@ import Image from "next/image";
 import { AuthContext } from "@/app/context/authContext";
 
 interface MenuProps {
-  // links: {
-  //   path: string;
-  //   name: string;
-  // }[];
   toggle: boolean;
   action: () => void;
 }
 
 const Menu: FC<MenuProps> = ({ toggle, action }) => {
   const { user } = useContext(AuthContext);
-    const links = [
-      { path: user ? "/user-home" : "/", name: "Home" },
-      { path: "/explore", name: "Explore" },
-      { path: "/library", name: "Library" },
-    ];
+  const links = [
+    { path: user ? "/user-home" : "/", name: "Home" },
+    { path: "/explore", name: "Explore" },
+    { path: "/library", name: "Library" },
+  ];
 
   const pathname = usePathname();
 
